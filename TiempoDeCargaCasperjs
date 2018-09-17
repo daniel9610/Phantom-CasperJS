@@ -1,0 +1,20 @@
+var casper = require("casper").create();
+var start = new Date().getTime();
+var links = [
+    "http://google.com/",
+    "http://yahoo.com/",
+    "http://facebook.com/",
+    "http://bing.com/"
+];
+
+casper.start();
+
+casper.each(links, function(self, link) {
+    this.thenOpen(link, function() {
+	var now = new Date().getTime();
+	this.echo(link + ' ha tardado en cargar ' + (now - start) + ' ms');
+	start = now;
+    });
+});
+
+casper.run();
