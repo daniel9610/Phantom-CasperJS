@@ -1,0 +1,9 @@
+var page = require("webpage").create();
+var system = require("system");
+var tiempo = Date.now();
+
+page.open("http://www.google.com", function(status){
+    tiempo = Date.now() - tiempo;
+    console.log("la pagina ha tardado en cargar " + tiempo + " milisegundos");
+    phantom.exit();
+});
